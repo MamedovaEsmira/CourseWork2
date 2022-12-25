@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class AnnualTask extends Task implements Repeatable {
+public class AnnualTask extends Task{
 
 
     public AnnualTask(String title, String description, boolean isWork, LocalDateTime dateTime) {
@@ -9,8 +9,10 @@ public class AnnualTask extends Task implements Repeatable {
     }
 
     public boolean checkIfSuitable(LocalDate date) {
-        return date.getDayOfMonth() == dateTime.getDayOfMonth()
-                && date.getMonth()==dateTime.getMonth();
+        boolean b = date.isAfter(dateTime.toLocalDate())
+        && date.getDayOfYear() == dateTime.getDayOfYear()
+                || dateTime.isEqual(dateTime.toLocalDate().atStartOfDay());
+        return b;
     }
     @Override
     protected String getType() {

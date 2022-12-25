@@ -17,10 +17,7 @@ public class Service {
         List<Task>result=new ArrayList<>();
      for (Map.Entry<Integer,Task>entry:mapOfTasks.entrySet()){
          Task task=entry.getValue();
-         if (task instanceof Repeatable
-         && ((Repeatable)task).checkIfSuitable(date)
-                 ||!(task instanceof Repeatable)
-                 && task.getDateTime().toLocalDate().equals(date)){
+         if (task.checkIfSuitable(date)){
              result.add(task);
          }
      }
